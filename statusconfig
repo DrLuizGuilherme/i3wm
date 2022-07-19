@@ -1,0 +1,63 @@
+general {
+        colors = true
+        interval = 1
+		separator = ""
+		color_degraded = "#ffffff"
+		color_bad = "#e47200"
+		color_good = "#ffffff"
+}
+
+# order += "memory"
+# order += "load"
+
+# order += "bluetooth"
+order += "wireless vpn0"
+order += "wireless wlp0s20f3"
+order += "volume master"
+order += "battery 0"
+order += "cpu_temperature 0"
+order += "tztime local"
+
+wireless wlp0s20f3 {
+        format_up = "%essid %bitrate  "
+        format_down = "  "
+}
+
+battery 0 {
+        format = "%status"
+        status_chr = "  ▲"
+        status_bat = "  ▼"
+		status_full = ""
+		status_unk = ""
+        path = "/sys/class/power_supply/BAT1/uevent"
+        low_threshold = 15
+		threshold_type = percentage
+}
+
+wireless vpn0 {
+		format_up = "VPN  "
+        format_down = ""
+}
+
+tztime local {
+        format = "  %H:%M  "
+}
+
+cpu_temperature 0 {
+        format = "  %degrees°C"
+        path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+load {
+		format = "  %1min %5min  "
+}
+
+memory {
+        format = "%percentage_free"
+}
+
+volume master {
+        format = "⊚"
+        format_muted = ""
+		mixer = "Master"
+}
